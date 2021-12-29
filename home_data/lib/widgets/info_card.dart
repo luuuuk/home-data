@@ -38,12 +38,15 @@ class InfoCardWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    value,
-                    style: GoogleFonts.quicksand(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
+                  Flexible(
+                    child: Text(
+                      value,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.quicksand(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: textColor,
+                      ),
                     ),
                   ),
                 ],
