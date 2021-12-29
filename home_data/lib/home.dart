@@ -139,18 +139,65 @@ class _HomePageState extends State<HomePage> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  IconButton(
-                                    onPressed: () {
+                                  GestureDetector(
+                                    onTap: () {
                                       setState(() {
                                         _drawerWidth =
                                             _drawerWidth == 0.0 ? 96.0 : 0.0;
                                       });
                                     },
-                                    icon: const Icon(
-                                      Icons.menu,
-                                      color: ThemeColors.darkGrey,
+                                    child: Container(
+                                      color: ThemeColors.lightWhite,
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            margin:
+                                                const EdgeInsets.only(right: 8),
+                                            height: 2.5,
+                                            width: 21,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(18.0),
+                                              color: ThemeColors.darkGrey,
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: const EdgeInsets.fromLTRB(
+                                                0, 5, 16, 5),
+                                            height: 2.5,
+                                            width: 18,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(18.0),
+                                              color: ThemeColors.darkGrey,
+                                            ),
+                                          ),
+                                          Container(
+                                            height: 2.5,
+                                            width: 18,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(18.0),
+                                              color: ThemeColors.darkGrey,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
+                                  // IconButton(
+                                  //   onPressed: () {
+                                  //     setState(() {
+                                  //       _drawerWidth =
+                                  //           _drawerWidth == 0.0 ? 96.0 : 0.0;
+                                  //     });
+                                  //   },
+                                  //   icon: const Icon(
+                                  //     Icons.menu,
+                                  //     color: ThemeColors.darkGrey,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
