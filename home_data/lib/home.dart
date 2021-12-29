@@ -186,18 +186,6 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                   ),
-                                  // IconButton(
-                                  //   onPressed: () {
-                                  //     setState(() {
-                                  //       _drawerWidth =
-                                  //           _drawerWidth == 0.0 ? 96.0 : 0.0;
-                                  //     });
-                                  //   },
-                                  //   icon: const Icon(
-                                  //     Icons.menu,
-                                  //     color: ThemeColors.darkGrey,
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                             ),
