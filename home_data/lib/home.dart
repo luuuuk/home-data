@@ -11,6 +11,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   double _drawerWidth = 0.0;
+  int selectedRoom = 0;
+  List<String> titles = ["Bedroom", "Kitchen"];
 
   @override
   void initState() {
@@ -30,7 +32,75 @@ class _HomePageState extends State<HomePage> {
                 color: ThemeColors.lightGrey,
                 duration: const Duration(seconds: 1),
                 curve: Curves.fastOutSlowIn,
-                child: Column(),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(8.0, 24.0, 8.0, 24.0),
+                      child: Text(
+                        "R",
+                        style: GoogleFonts.quicksand(
+                            fontSize: 21,
+                            fontWeight: FontWeight.w700,
+                            color: ThemeColors.lightGrey),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedRoom = 0;
+                        });
+                      },
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.fastOutSlowIn,
+                        height: selectedRoom == 0 ? 54 : 48,
+                        width: selectedRoom == 0 ? 54 : 48,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: selectedRoom == 0
+                              ? ThemeColors.accentYellow
+                              : ThemeColors.midGrey,
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.bed_outlined,
+                            color: selectedRoom == 0
+                                ? ThemeColors.lightWhite
+                                : ThemeColors.darkGrey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedRoom = 1;
+                        });
+                      },
+                      child: AnimatedContainer(
+                        margin: const EdgeInsets.only(top: 24.0),
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.fastOutSlowIn,
+                        height: selectedRoom == 1 ? 54 : 48,
+                        width: selectedRoom == 1 ? 54 : 48,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: selectedRoom == 1
+                              ? ThemeColors.accentYellow
+                              : ThemeColors.midGrey,
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.kitchen,
+                            color: selectedRoom == 1
+                                ? ThemeColors.lightWhite
+                                : ThemeColors.darkGrey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Expanded(
                 child: Container(
@@ -43,24 +113,30 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Expanded(
-                              child: Row(),
+                              child: Container(),
                             ),
                             Expanded(
                               flex: 3,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Home Data",
-                                    style: GoogleFonts.quicksand(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      titles[selectedRoom],
+                                      style: GoogleFonts.quicksand(
                                         fontSize: 21,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ],
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             Expanded(
                               child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   IconButton(
