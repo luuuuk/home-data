@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_data/theme.dart';
+import 'package:home_data/widgets/info_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -207,50 +208,25 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Expanded(
                         child: Row(
-                          children: [
+                          children: const [
                             Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    color: ThemeColors.accentYellow,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const Icon(
-                                          Icons.thermostat,
-                                          color: ThemeColors.lightWhite,
-                                        ),
-                                        Text(
-                                          "Temp",
-                                          style: GoogleFonts.quicksand(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w700,
-                                            color: ThemeColors.lightWhite,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                              child: InfoCardWidget(
+                                ThemeColors.accentYellow,
+                                ThemeColors.lightWhite,
+                                ThemeColors.lightWhite,
+                                "Temp",
+                                "19 °C",
+                                Icons.thermostat,
                               ),
                             ),
                             Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    color: ThemeColors.midGrey,
-                                  ),
-                                ),
+                              child: InfoCardWidget(
+                                ThemeColors.midGrey,
+                                ThemeColors.darkGrey,
+                                Colors.black,
+                                "Humidity",
+                                "000",
+                                Icons.water_damage,
                               ),
                             ),
                           ],
@@ -258,27 +234,25 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Expanded(
                         child: Row(
-                          children: [
+                          children: const [
                             Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    color: ThemeColors.midGrey,
-                                  ),
-                                ),
+                              child: InfoCardWidget(
+                                ThemeColors.midGrey,
+                                ThemeColors.darkGrey,
+                                Colors.black,
+                                "Pressure",
+                                "000",
+                                Icons.line_weight,
                               ),
                             ),
                             Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    color: ThemeColors.midGrey,
-                                  ),
-                                ),
+                              child: InfoCardWidget(
+                                ThemeColors.midGrey,
+                                ThemeColors.darkGrey,
+                                Colors.black,
+                                "Air Quality",
+                                "000",
+                                Icons.air,
                               ),
                             ),
                           ],
