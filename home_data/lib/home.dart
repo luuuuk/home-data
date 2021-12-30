@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:home_data/theme.dart';
+import 'package:home_data/widgets/graph_card.dart';
 import 'package:home_data/widgets/info_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -193,18 +194,9 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         flex: 2,
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(18.0),
-                              color: ThemeColors.darkGrey,
-                            ),
-                          ),
-                        ),
+                        child: GraphCardWidget(),
                       ),
                       Expanded(
                         child: Row(
