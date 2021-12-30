@@ -14,6 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double _drawerWidth = 0.0;
   int selectedRoom = 0;
+  int selectedDataField = 0;
   List<String> titles = ["Bedroom", "Kitchen"];
 
   @override
@@ -200,25 +201,51 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Expanded(
                         child: Row(
-                          children: const [
+                          children: [
                             Expanded(
-                              child: InfoCardWidget(
-                                ThemeColors.accentYellow,
-                                ThemeColors.lightWhite,
-                                ThemeColors.lightWhite,
-                                "Temp",
-                                "19 °C",
-                                Icons.thermostat,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedDataField = 0;
+                                  });
+                                },
+                                child: InfoCardWidget(
+                                  selectedDataField == 0
+                                      ? ThemeColors.accentYellow
+                                      : ThemeColors.midGrey,
+                                  selectedDataField == 0
+                                      ? ThemeColors.lightWhite
+                                      : ThemeColors.darkGrey,
+                                  selectedDataField == 0
+                                      ? ThemeColors.lightWhite
+                                      : Colors.black,
+                                  "Temp",
+                                  "19 °C",
+                                  Icons.thermostat,
+                                ),
                               ),
                             ),
                             Expanded(
-                              child: InfoCardWidget(
-                                ThemeColors.midGrey,
-                                ThemeColors.darkGrey,
-                                Colors.black,
-                                "Humidity",
-                                "27 %",
-                                Icons.water_damage,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedDataField = 1;
+                                  });
+                                },
+                                child: InfoCardWidget(
+                                  selectedDataField == 1
+                                      ? ThemeColors.accentYellow
+                                      : ThemeColors.midGrey,
+                                  selectedDataField == 1
+                                      ? ThemeColors.lightWhite
+                                      : ThemeColors.darkGrey,
+                                  selectedDataField == 1
+                                      ? ThemeColors.lightWhite
+                                      : Colors.black,
+                                  "Humidity",
+                                  "27 %",
+                                  Icons.water_damage,
+                                ),
                               ),
                             ),
                           ],
@@ -226,25 +253,51 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Expanded(
                         child: Row(
-                          children: const [
+                          children: [
                             Expanded(
-                              child: InfoCardWidget(
-                                ThemeColors.midGrey,
-                                ThemeColors.darkGrey,
-                                Colors.black,
-                                "Pressure",
-                                "1012 hPa",
-                                Icons.line_weight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedDataField = 2;
+                                  });
+                                },
+                                child: InfoCardWidget(
+                                  selectedDataField == 2
+                                      ? ThemeColors.accentYellow
+                                      : ThemeColors.midGrey,
+                                  selectedDataField == 2
+                                      ? ThemeColors.lightWhite
+                                      : ThemeColors.darkGrey,
+                                  selectedDataField == 2
+                                      ? ThemeColors.lightWhite
+                                      : Colors.black,
+                                  "Pressure",
+                                  "1012 hPa",
+                                  Icons.line_weight,
+                                ),
                               ),
                             ),
                             Expanded(
-                              child: InfoCardWidget(
-                                ThemeColors.midGrey,
-                                ThemeColors.darkGrey,
-                                Colors.black,
-                                "Air Quality",
-                                "320",
-                                Icons.air,
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    selectedDataField = 3;
+                                  });
+                                },
+                                child: InfoCardWidget(
+                                  selectedDataField == 3
+                                      ? ThemeColors.accentYellow
+                                      : ThemeColors.midGrey,
+                                  selectedDataField == 3
+                                      ? ThemeColors.lightWhite
+                                      : ThemeColors.darkGrey,
+                                  selectedDataField == 3
+                                      ? ThemeColors.lightWhite
+                                      : Colors.black,
+                                  "Air Quality",
+                                  "320",
+                                  Icons.air,
+                                ),
                               ),
                             ),
                           ],

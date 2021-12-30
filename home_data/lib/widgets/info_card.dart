@@ -20,7 +20,9 @@ class InfoCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18.0),
           color: cardColor,
