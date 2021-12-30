@@ -43,7 +43,7 @@ class InfoCardWidget extends StatelessWidget {
                       value,
                       overflow: TextOverflow.ellipsis,
                       style: GoogleFonts.quicksand(
-                        fontSize: 32,
+                        fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: textColor,
                       ),
@@ -54,7 +54,7 @@ class InfoCardWidget extends StatelessWidget {
               Text(
                 title,
                 style: GoogleFonts.quicksand(
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.w500,
                   color: textColor,
                 ),
