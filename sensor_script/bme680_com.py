@@ -18,8 +18,10 @@ while True:
     currentGas = bme680.gas
     currentHumidity = bme680.relative_humidity
     currentPressure = bme680.pressure
+    timestamp = datetime.datetime.now()
 
     # Print data
+    print("\nTimestamp: " + timestamp.strftime('%A %d-%m-%Y, %H:%M:%S'))
     print("Temp: %0.1f C" % currentTemp)
     print("Gas: %d ohm" % currentGas)
     print("Humidity: %0.1f %%" % currentHumidity)
@@ -28,9 +30,9 @@ while True:
     ## Write data to database
     mongodbclient = pymongo.MongoClient("mongodb://localhost:27017/")
     mongodb = mongodbclient["homedata"]
-    dbcol = mongodb["sensor"]
-    dataSet = { "date": datetime.datetime.now, "gas": currentGas, "humidity": currentHumidity, "pressure": currentPressure, "temperature": currentTemp }
+    dbcol = mongodb["sensors"]
+    dataSet = { "date": timestamp, "gas": currentGas, "humidity": currentHumidity, "pressure": currentPressure, "temperature": currentTemp }
     x = dbcol.insert_one(dataSet)
 
 
-    time.sleep(10)
+    time.sleep(60)
