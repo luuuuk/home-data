@@ -26,6 +26,20 @@ db.once("open", function () {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get('/allData', async (req, res) => {
+    sensorSchema.find({}, (err, result) => {
+        if(err){
+            print(err.toString())
+            res.send(err);
+        }
+
+        console.log('Data length: ' + result.length.toString())
+        console.log('Data found: ' + result.toString())
+        res.send(result);
+    });
+
+});
+
 app.get('/recentData', async (req, res) => {
     const dateNowMS = new Date().getTime()
     const dateDiffMS = 24 * 60 * 60 * 1000
@@ -36,10 +50,4 @@ app.get('/recentData', async (req, res) => {
     res.send(data);
 });
 
-app.get('/allData', async (req, res) => {
-    const data = await sensorSchema.find({}).sort({date: 1});
-    console.log('Found data row: ' + data.toString());
-    res.send(data);
-});
-
-app.listen(port, () => console.log(`Hello world app listening on port ${port}!`))
+app.listen(port, () => console.log(`Node server listening on port ${port}!`))
