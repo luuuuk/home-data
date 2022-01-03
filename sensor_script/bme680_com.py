@@ -28,7 +28,7 @@ while True:
     ## Write data to database
     mongodbclient = pymongo.MongoClient("mongodb://localhost:27017/")
     mongodb = mongodbclient["homedata"]
-    dbcol = mongodb["sensor1"]
+    dbcol = mongodb["sensor"]
     dataSet = { "date": datetime.datetime.now, "gas": currentGas, "humidity": currentHumidity, "pressure": currentPressure, "temperature": currentTemp }
     x = dbcol.insert_one(dataSet)
 
