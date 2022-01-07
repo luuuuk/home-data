@@ -78,11 +78,6 @@ try:
         # Calculate air_quality_score.
         air_quality_score = hum_score + gas_score
 
-        # print('Gas: {0:.2f} Ohms,humidity: {1:.2f} %RH,air quality: {2:.2f}'.format(
-        #     currentGas,
-        #     currentHumidity,
-        #     air_quality_score))
-
         # Print data
         print("\nTimestamp: " + timestamp.strftime('%A %d-%m-%Y, %H:%M:%S'))
         print("Temp: %0.1f C" % currentTemp)
@@ -92,12 +87,11 @@ try:
         print('air quality: %0.2f' % air_quality_score)
 
         # Write data to database
-        # mongodbclient = pymongo.MongoClient("mongodb://localhost:27017/")
-        # mongodb = mongodbclient["homedata"]
-        # dbcol = mongodb["sensors"]
-        # dataSet = { "date": timestamp, "gas": currentGas, "humidity": currentHumidity, "pressure": currentPressure, "temperature": currentTemp }
-        # x = dbcol.insert_one(dataSet)
-
+        mongodbclient = pymongo.MongoClient("mongodb://192.168.18.3:27017/")
+        mongodb = mongodbclient["homedata"]
+        dbcol = mongodb["sensors"]
+        dataSet = { "date": timestamp, "gas": air_quality_score, "humidity": currentHumidity, "pressure": currentPressure, "temperature": currentTemp }
+        x = dbcol.insert_one(dataSet)
 
         time.sleep(60)
 
