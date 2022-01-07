@@ -89,7 +89,7 @@ try:
         print("Gas: %d ohm" % currentGas)
         print("Humidity: %0.1f %%RH" % currentHumidity)
         print("Pressure: %0.3f hPa" % currentPressure)
-        print('air quality: {2:.2f}'.format(air_quality_score))
+        print('air quality: %0.2f' % air_quality_score)
 
         # Write data to database
         # mongodbclient = pymongo.MongoClient("mongodb://localhost:27017/")
