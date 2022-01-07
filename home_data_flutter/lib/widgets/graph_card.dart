@@ -6,27 +6,64 @@ import 'dart:math';
 import '../theme.dart';
 
 class GraphCardWidget extends StatelessWidget {
-  const GraphCardWidget({Key? key}) : super(key: key);
+  const GraphCardWidget(
+    this.dataPoints,
+    this.dataIndex, {
+    Key? key,
+  }) : super(key: key);
+
+  final List dataPoints;
+  final int dataIndex;
 
   @override
   Widget build(BuildContext context) {
+    String dataKey;
+    switch (dataIndex) {
+      case 0:
+        dataKey = 'temperature';
+        break;
+      case 1:
+        dataKey = 'humidity';
+        break;
+      case 2:
+        dataKey = 'pressure';
+        break;
+      case 3:
+        dataKey = 'gas';
+        break;
+      default:
+        dataKey = 'temperature';
+    }
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
-      child: DataLineChart(),
+      child: DataLineChart(dataPoints, dataKey),
     );
   }
 }
 
 // ignore: must_be_immutable
 class DataLineChart extends StatelessWidget {
-  final spots = List.generate(101, (i) => (i - 50) / 10)
-      .map((x) => FlSpot(x, sin(x)))
-      .toList();
+  final List dataPoints;
+  final String dataKey;
 
-  DataLineChart({Key? key}) : super(key: key);
+  const DataLineChart(this.dataPoints, this.dataKey, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    double maxY = 0.0;
+    double minY = 1300;
+    double horzInterval;
+    final spots = dataPoints.asMap().entries.map((e) {
+      if (e.value[dataKey].toDouble() < minY) {
+        minY = e.value[dataKey].toDouble();
+      }
+      if (e.value[dataKey].toDouble() > maxY) {
+        maxY = e.value[dataKey].toDouble();
+      }
+      return FlSpot(e.key.toDouble(), e.value[dataKey].toDouble());
+    }).toList();
+    horzInterval = (maxY - minY) / 2;
     return SizedBox(
       width: 400,
       height: 400,
@@ -66,8 +103,8 @@ class DataLineChart extends StatelessWidget {
               dotData: FlDotData(show: false),
             ),
           ],
-          minY: -1.5,
-          maxY: 1.5,
+          minY: minY,
+          maxY: maxY,
           titlesData: FlTitlesData(
             leftTitles: SideTitles(
                 showTitles: false,
@@ -85,8 +122,8 @@ class DataLineChart extends StatelessWidget {
             show: true,
             drawHorizontalLine: true,
             drawVerticalLine: true,
-            horizontalInterval: 2.0,
-            verticalInterval: 12.0,
+            horizontalInterval: horzInterval,
+            verticalInterval: 36.0,
           ),
           borderData: FlBorderData(show: false),
         ),
