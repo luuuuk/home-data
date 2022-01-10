@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   void _onRefresh() async {
     // Get data
     // if failed,use refreshFailed()
-    await BlocProvider.of<HomeDataCubit>(context).getData(titles[selectedRoom]);
+    await BlocProvider.of<HomeDataCubit>(context).getData();
 
     refreshController.refreshCompleted();
   }
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: Center(
                           child: Icon(
-                            Icons.bed_outlined,
+                            Icons.kitchen,
                             color: selectedRoom == 0
                                 ? ThemeColors.lightWhite
                                 : ThemeColors.darkGrey,
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: Center(
                           child: Icon(
-                            Icons.kitchen,
+                            Icons.bed_outlined,
                             color: selectedRoom == 1
                                 ? ThemeColors.lightWhite
                                 : ThemeColors.darkGrey,
@@ -253,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                                 Expanded(
                                   flex: 2,
                                   child: GraphCardWidget(
-                                      state.document!['sensor'],
+                                      state.document!['sensor'][selectedRoom],
                                       selectedDataField),
                                 ),
                                 Expanded(
@@ -277,7 +277,9 @@ class _HomePageState extends State<HomePage> {
                                                 ? ThemeColors.lightWhite
                                                 : Colors.black,
                                             "Temp",
-                                            state.document!['sensor']
+                                            state
+                                                    .document!['sensor']
+                                                        [selectedRoom]
                                                     .last['temperature']
                                                     .toStringAsFixed(2) +
                                                 " °C",
@@ -303,7 +305,9 @@ class _HomePageState extends State<HomePage> {
                                                 ? ThemeColors.lightWhite
                                                 : Colors.black,
                                             "Humidity",
-                                            state.document!['sensor']
+                                            state
+                                                    .document!['sensor']
+                                                        [selectedRoom]
                                                     .last['humidity']
                                                     .toStringAsFixed(2) +
                                                 " %",
@@ -335,7 +339,9 @@ class _HomePageState extends State<HomePage> {
                                                 ? ThemeColors.lightWhite
                                                 : Colors.black,
                                             "Pressure",
-                                            state.document!['sensor']
+                                            state
+                                                    .document!['sensor']
+                                                        [selectedRoom]
                                                     .last['pressure']
                                                     .toStringAsFixed(0) +
                                                 " hPa",
@@ -362,7 +368,9 @@ class _HomePageState extends State<HomePage> {
                                                 : Colors.black,
                                             "Air Quality",
                                             state
-                                                .document!['sensor'].last['gas']
+                                                .document!['sensor']
+                                                    [selectedRoom]
+                                                .last['gas']
                                                 .toStringAsFixed(0),
                                             Icons.air,
                                           ),
