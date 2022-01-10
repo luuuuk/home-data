@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   double _drawerWidth = 0.0;
   int selectedRoom = 0;
   int selectedDataField = 0;
-  List<String> titles = ["Bedroom", "Kitchen"];
+  List<String> titles = ["Kitchen", "Bedroom"];
   RefreshController refreshController = RefreshController(initialRefresh: true);
 
   @override
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   void _onRefresh() async {
     // Get data
     // if failed,use refreshFailed()
-    await BlocProvider.of<HomeDataCubit>(context).getData();
+    await BlocProvider.of<HomeDataCubit>(context).getData(titles[selectedRoom]);
 
     refreshController.refreshCompleted();
   }
@@ -279,7 +279,7 @@ class _HomePageState extends State<HomePage> {
                                             "Temp",
                                             state.document!['sensor']
                                                     .last['temperature']
-                                                    .toString() +
+                                                    .toStringAsFixed(2) +
                                                 " °C",
                                             Icons.thermostat,
                                           ),
@@ -305,7 +305,7 @@ class _HomePageState extends State<HomePage> {
                                             "Humidity",
                                             state.document!['sensor']
                                                     .last['humidity']
-                                                    .toString() +
+                                                    .toStringAsFixed(2) +
                                                 " %",
                                             Icons.water_damage,
                                           ),
@@ -363,7 +363,7 @@ class _HomePageState extends State<HomePage> {
                                             "Air Quality",
                                             state
                                                 .document!['sensor'].last['gas']
-                                                .toString(),
+                                                .toStringAsFixed(0),
                                             Icons.air,
                                           ),
                                         ),

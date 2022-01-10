@@ -10,14 +10,14 @@ class HomeDataCubit extends Cubit<HomeDataState> {
 
   final _api = HomeDataAPI();
 
-  Future<void> getData() async {
+  Future<void> getData(String roomID) async {
     emit(state.copyWith(status: 'loading'));
 
     try {
       // request data
       Map<String, dynamic> document = {};
 
-      final response = await _api.getData();
+      final response = await _api.getData(roomID);
 
       if (response.isNotEmpty) {
         document = {'sensor': response};
@@ -37,7 +37,7 @@ class HomeDataCubit extends Cubit<HomeDataState> {
 }
 
 class HomeDataAPI {
-  static const String basePath = r'http://192.168.2.110:3001';
+  static const String basePath = r'http://192.168.18.3:3001';
 
   Dio dio;
 
@@ -56,7 +56,7 @@ class HomeDataAPI {
   ///
   /// Returns a [Future] containing a [Response] with a [Map<String, dynamic>] as data
   /// Throws [DioError] if API call or serialization fails
-  Future<List> getData() async {
+  Future<List> getData(String roomID) async {
     /// Acceept any certificate
     (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (client) {
@@ -66,7 +66,7 @@ class HomeDataAPI {
       };
     };
 
-    String requestPath = basePath + '/recentData';
+    String requestPath = basePath + '/recentData' + roomID;
     Response response;
     List resultDocument = [];
 
