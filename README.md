@@ -19,7 +19,7 @@ After the 5 min burn in, data will be collected every 10 minutes and sent to a M
 
 ### Node JS Server
 
-A simple node js server with [express js](https://expressjs.com/) is being used to query the MongoDB database upon request and answer with the data that has been collected in the last 24 hours.
+A simple node js server with [express js](https://expressjs.com/) is being used to query the MongoDB database on the same device upon request and answer with the data that has been collected in the last 24 hours.
 
 The server can be started from within the server folder with the following command: `node index.js`
 
@@ -31,7 +31,7 @@ The server will connect to the MongoDB database and then accept requests on port
 
 ### Flutter Application
 
-The flutter application provides a simple interface to display the data of the last 24 hours. A server request at `serverIP:3001/recentData` will return the data needed. This request will be fired upon start of the app and upon pull-to-refresh inside the app.
+The flutter application provides a simple interface to display the data of the last 24 hours. A server request at `serverIP:3001/recentData` will return the data needed. This request will be fired upon start of the app and upon pull-to-refresh inside the app. **NOTE: the server IP address in the project files is in a local network, remember to change it accordingly.**
 
 Screenshots of the app:
 
