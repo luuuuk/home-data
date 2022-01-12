@@ -1,6 +1,6 @@
-# home-data
+# Home Data
 
-A data visualisation project for data collected at home.
+A data visualisation project for data collected at home, such as Temperature, Humidity, Air Pressure and Air Quality.
 
 ## Project Structure
 
