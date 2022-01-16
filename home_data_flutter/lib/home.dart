@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   double _drawerWidth = 0.0;
   int selectedRoom = 0;
   int selectedDataField = 0;
-  List<String> titles = ["Kitchen", "Bedroom"];
+  List<String> titles = ["Kitchen", "Bedroom", "Office"];
   RefreshController refreshController = RefreshController(initialRefresh: true);
 
   @override
@@ -78,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         setState(() {
                           selectedRoom = 0;
+                          _drawerWidth = 0.0;
                         });
                       },
                       child: AnimatedContainer(
@@ -105,6 +106,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         setState(() {
                           selectedRoom = 1;
+                          _drawerWidth = 0.0;
                         });
                       },
                       child: AnimatedContainer(
@@ -123,6 +125,35 @@ class _HomePageState extends State<HomePage> {
                           child: Icon(
                             Icons.bed_outlined,
                             color: selectedRoom == 1
+                                ? ThemeColors.lightWhite
+                                : ThemeColors.darkGrey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedRoom = 2;
+                          _drawerWidth = 0.0;
+                        });
+                      },
+                      child: AnimatedContainer(
+                        margin: const EdgeInsets.only(top: 24.0),
+                        duration: const Duration(milliseconds: 500),
+                        curve: Curves.fastOutSlowIn,
+                        height: selectedRoom == 2 ? 54 : 48,
+                        width: selectedRoom == 2 ? 54 : 48,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: selectedRoom == 2
+                              ? ThemeColors.accentYellow
+                              : ThemeColors.midGrey,
+                        ),
+                        child: Center(
+                          child: Icon(
+                            Icons.desktop_mac_rounded,
+                            color: selectedRoom == 2
                                 ? ThemeColors.lightWhite
                                 : ThemeColors.darkGrey,
                           ),
