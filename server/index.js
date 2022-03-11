@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require("mongoose");
 const sensorSchema = require('./schemas/sensor-schema')
-const bedroomSchema = require('./schemas/bedroom-schema')   
+const bedroomSchema = require('./schemas/bedroom-schema');   
+const officeSchema = require('./schemas/office-schema');
 
 const app = express();
 const port = 3001;
@@ -41,6 +42,17 @@ app.get('/allData', async (req, res) => {
 
 });
 
+// app.get('/recentData', async (req, res) => {
+//     const dateNowMS = new Date().getTime()
+//     const dateDiffMS = 24 * 60 * 60 * 1000
+//     const officeData = await officeSchema.find({
+//         date: {$gte : new Date(dateNowMS - dateDiffMS)},
+//     }).sort({date: 1});
+    
+//     console.log('Found documents: office ' + officeData.length.toString());
+//     res.send([officeData, officeData, officeData]);
+// });
+
 app.get('/recentData', async (req, res) => {
     const dateNowMS = new Date().getTime()
     const dateDiffMS = 24 * 60 * 60 * 1000
@@ -52,7 +64,7 @@ app.get('/recentData', async (req, res) => {
     }).sort({date: 1});
     
     console.log('Found documents: kitchen ' + kitchenData.length.toString() + ' | bedroom ' + bedroomData.length.toString());
-    res.send([kitchenData, bedroomData]);
+    res.send([kitchenData, bedroomData, kitchenData]);
 });
 
 app.listen(port, () => console.log(`Node server listening on port ${port}!`))
